@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>📝 Evaluación N°1</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.js"></script>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header>
+        <p>
+            <a href="index.html">Hola</a>
+            <a href="page-1.html">Caleidoscopio</a>
+            <a href="page-2.html">Condiciones</a>
+            <a href="page-3.html" class="activo">Poema Aleatorio</a>
+            <a href="page-4.html">Orbit Control</a>
+            <a href="page-5.html" >Ojitos</a>
+        </p>
+        <h1>Poema aleatorio</h1>
+    </header>
+
+    <main></main>
+    
+    <aside>
+        <button onclick="foto()">🖼 DESCARGA</button>
+    </aside>
+
+    <script>
+        let symmetry = 6;
+        let angle = 360 / symmetry;
+        
+        // Nueva variable para la altura de la barra de navegación
+        let navHeight = 120; // Ajusta este valor según el diseño de tu barra
+
+        function setup() {
+            createCanvas(windowWidth, windowHeight);
+            angleMode(DEGREES);
+            background("#1A7C59");
+        }
+
+        // Poema: Canción "Rosa Pastel" de Belanova
+        let words = ['No', 'no', 'quiero', 'ser', 'esa', 'mujer', 'ella',
+        'se', 'fue', 'a', 'un', 'abismo', 'Tú', 'no', 'eres', 'aquel',
+        'que', 'prometió', 'sería', 'mi', 'superhéroe', 'y', 'qué', 'todo', 
+        'acabó', 'no', 'queda', 'más', 'seremos', 'dos', 'extraños', 'yo', 'te',
+        'olvidaré', 'me', 'olvidarás', 'Hasta', 'nunca'];
+
+        let wordCount = 38;
+        let hue;
+        let position;
+
+        function setup() {
+            textFont('Space Mono');
+            createCanvas(windowWidth, windowHeight);
+            textAlign(CENTER);
+            colorMode(HSB);
+
+            hue = random(180, 360);
+            position = floor(random(0, words.length - wordCount));
+
+            // Dibujar palabras en posiciones aleatorias, evitando la barra de navegación
+            for (let i = 0; i < 20; i++) {
+                textSize(random(16, 48));
+                fill(hue, 200, random(50, 95));
+
+                // Ajustar la posición para que no pase por la barra de navegación
+                let x = random(width);
+                let y = random(navHeight + 20, height); // 20 píxeles de margen por debajo de la barra
+
+                text(random(words), x, y);
+            }
+        }
+
+            function foto() {
+    saveCanvas("poema-aleatorio.jpg");
+}
+
+        function windowResized() {
+            resizeCanvas(windowWidth, windowHeight);
+            background("#1A7C59");
+        }
+    </script>
+</body>
+</html>
